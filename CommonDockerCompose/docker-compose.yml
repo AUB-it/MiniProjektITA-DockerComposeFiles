@@ -74,19 +74,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  
-  nginx:
-    depends_on:
-      - rabbitmq
-      - grafana
-      - loki
-      - mongodb
-      - vault
-    image: nginx:latest
-    volumes:
-    - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    ports:
-    - "4000:4000"
     
     
 networks:
