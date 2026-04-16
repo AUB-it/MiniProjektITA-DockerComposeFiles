@@ -77,7 +77,11 @@ services:
   
   nginx:
     depends_on:
-      - [rabbitmq, grafana, loki, mongodb, vault]
+      - rabbitmq
+      - grafana
+      - loki
+      - mongodb
+      - vault
     image: nginx:latest
     volumes:
     - ./nginx.conf:/etc/nginx/nginx.conf:ro
@@ -92,3 +96,4 @@ networks:
 volumes:
   mongo-data:
     driver: local
+  grafana_data:
