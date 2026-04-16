@@ -1,7 +1,17 @@
 services:
   auth-service:
+    image: 
     ports:
       -"5541:5541"
-    image: 
     networks:
       - haavops
+    
+  user-service:
+    image:
+    ports:
+      -"5542:5542"
+    networks:
+      - haavops
+  
+
+  ## nginx goes here, sammen med config filen
