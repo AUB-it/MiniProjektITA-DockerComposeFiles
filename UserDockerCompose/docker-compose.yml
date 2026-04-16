@@ -1,0 +1,7 @@
+services:
+  auth-service:
+    ports:
+      -"5541:5541"
+    image: 
+    networks:
+      - haavops
