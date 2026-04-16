@@ -1,0 +1,1 @@
+nginx config fil skal configureres til load balancing mellem services
