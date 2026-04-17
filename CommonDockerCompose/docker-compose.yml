@@ -81,7 +81,7 @@ services:
     
     
 networks:
-  haavmisc
+  haavmisc:
 
 volumes:
   mongo-data:
