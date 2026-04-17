@@ -24,6 +24,7 @@ services:
     command: 'server -dev -dev-root-token-id="00000000-0000-0000-0000-000000000000"'
     networks:
       - haavmisc
+      - external-backend
     
 
   mongodb:
@@ -39,6 +40,7 @@ services:
       - mongo-data:/data/db
     networks:
       - haavmisc
+      - external-backend
 
   loki:
     image: grafana/loki
@@ -82,6 +84,8 @@ services:
     
 networks:
   haavmisc:
+  external-backend:
+    external: true
 
 volumes:
   mongo-data:

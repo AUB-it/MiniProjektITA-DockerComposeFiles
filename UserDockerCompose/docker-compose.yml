@@ -1,24 +1,26 @@
 services:
   auth-service:
-    image: auth-service:0.1.0
+    image: mortenstaunstrup/authservice-image:0.1.1
     environment:
-      - VAULT_URL=https://localhost:8201/
-    expose:
-      - "8080"
-    networks:
-      - haavops
-    
-  user-service:
-    image: 
-    environment:
-      - MONGO_CONNECTION_STRING=mongodb://localhost:27017/
-      - MONGO_DATABASE_NAME=UserDb
-      - VAULT_URL=https://localhost:8201/
-      - AUTHSERVICE_ULR=http://localhost:5294/
+      - VAULT_ENDPOINT=https://vault:8201/
     expose:
       - "8080"
     networks:
       - haavuser
+      - external-backend
+    
+  user-service:
+    image: mortenstaunstrup/userservice-image:1.0.4
+    environment:
+      - MONGO_CONNECTION_STRING=mongodb://admin:secret123@mongodb:27017/?authSource=admin
+      - MONGO_DATABASE_NAME=UserDb
+      - VAULT_ENDPOINT=https://vault:8201/
+      - AUTHSERVICE_ULR=http://nginx:4000/authservices/
+    expose:
+      - "8080"
+    networks:
+      - haavuser
+      - external-backend
   
   nginx:
     image: nginx:latest
@@ -33,6 +35,8 @@ services:
       - haavuser
 
 networks:
-  haavuser
+  haavuser:
+  external-backend:
+    external: true
 
   ## nginx goes here, sammen med config filen
