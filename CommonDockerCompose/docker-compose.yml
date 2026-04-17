@@ -22,6 +22,8 @@ services:
     healthcheck:
       retries: 5
     command: 'server -dev -dev-root-token-id="00000000-0000-0000-0000-000000000000"'
+    networks:
+      - haavmisc
     
 
   mongodb:
@@ -36,7 +38,7 @@ services:
     volumes:
       - mongo-data:/data/db
     networks:
-      - haavops
+      - haavmisc
 
   loki:
     image: grafana/loki
@@ -45,7 +47,7 @@ services:
     - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     networks:
-    - haavops
+      - haavmisc
 
   grafana:
     depends_on:
@@ -61,7 +63,7 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
     networks:
-      - haavops
+      - haavmisc
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -74,11 +76,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - haavmisc
     
     
 networks:
-  haavops:
-    name: haavops
+  haavmisc
 
 volumes:
   mongo-data:
