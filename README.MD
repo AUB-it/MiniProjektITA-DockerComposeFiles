@@ -15,3 +15,11 @@ skal gå igennem nginx med http://localhost:4000/userservices <> http://localhos
 
 VAULT, MONGODB, AUTHSERVICE, USERSERVICE  
 kører allesammen på fælles docker netværk.
+
+
+GRAFANA  
+Login  
+User = admin  
+Password = admin  
+
+Connect til Loki med = htt://loki:3100/
