@@ -10,7 +10,7 @@ services:
       - external-backend
     
   user-service:
-    image: mortenstaunstrup/userservice-image:1.0.4
+    image: mortenstaunstrup/userservice-image:42.0.0
     environment:
       - MONGO_CONNECTION_STRING=mongodb://admin:secret123@mongodb:27017/?authSource=admin
       - MONGO_DATABASE_NAME=UserDb
